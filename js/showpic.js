@@ -13,7 +13,6 @@ function addLoadEvent (func) {
 	}
 }
 
-
 function insertAfter(newElement, targetElement) {
     var parent = targetElement.parentNode;
     if(parent.lastChild == targetElement){
