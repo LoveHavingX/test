@@ -1,14 +1,43 @@
+addLoadEvent(preparePlaceholder);
+addLoadEvent(prepareGallery);
+
 function addLoadEvent (func) {
 	var oldonload = window.onload;
 	if(typeof window.onload != "function"){
 		window.onload = func;
 	}else{
-		oldonload();
-		func();
+		window.onload = function (){
+            oldonload();
+        	func();
+		}
 	}
 }
 
-addLoadEvent(prepareGallery);
+
+function insertAfter(newElement, targetElement) {
+    var parent = targetElement.parentNode;
+    if(parent.lastChild == targetElement){
+        parent.appendChild(newElement);
+    }else {
+        parent.insertBefore(newElement, targetElement.nextSibling);
+    }
+}
+
+function preparePlaceholder() {
+	var placeholder = document.createElement("img");
+	placeholder.setAttribute("id", "placeholder");
+	placeholder.setAttribute("src", "img/52325380_p0_master1200.jpg");
+	placeholder.setAttribute("alt", "my image gallery");
+	var description = document.createElement("p");
+	description.setAttribute("id", "description");
+	desctest = document.createTextNode("choose a image");
+	description.appendChild(desctest);
+	var gallery = document.getElementById("imagegallery");
+	insertAfter(placeholder, gallery);
+	insertAfter(description, placeholder);
+
+}
+
 
 function prepareGallery(){
 	console.log("in prepareGallery");
